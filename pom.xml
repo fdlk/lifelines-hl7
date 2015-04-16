@@ -10,7 +10,7 @@
 			<plugin>
 				<groupId>org.jvnet.jaxb2.maven2</groupId>
 				<artifactId>maven-jaxb2-plugin</artifactId>
-				<version>0.11.0</version>
+				<version>0.12.3</version>
 				<executions>
 					<execution>
 						<goals>
@@ -18,6 +18,9 @@
 						</goals>
 						<configuration>
 							<schemaDirectory>src/main/resources/schemas</schemaDirectory>
+							<schemaIncludes>
+								<include>**/*.xsd</include>
+							</schemaIncludes>
 							<bindingDirectory>src/main/resources/xjb</bindingDirectory>
 							<bindingIncludes>
 								<include>**/*.xjb</include>
