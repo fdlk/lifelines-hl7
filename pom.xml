@@ -10,7 +10,7 @@
 			<plugin>
 				<groupId>org.jvnet.jaxb2.maven2</groupId>
 				<artifactId>maven-jaxb2-plugin</artifactId>
-				<version>0.11.0</version>
+				<version>0.12.3</version>
 				<executions>
 					<execution>
 						<goals>
@@ -18,6 +18,9 @@
 						</goals>
 						<configuration>
 							<schemaDirectory>src/main/resources/schemas</schemaDirectory>
+							<schemaIncludes>
+								<include>**/*.xsd</include>
+							</schemaIncludes>
 							<bindingDirectory>src/main/resources/xjb</bindingDirectory>
 							<bindingIncludes>
 								<include>**/*.xjb</include>
@@ -27,22 +30,25 @@
 					</execution>
 				</executions>
 			</plugin>
-
-			<!-- compile XML schemas <plugin> <groupId>org.codehaus.mojo</groupId> 
-				<artifactId>jaxb2-maven-plugin</artifactId> <executions> <execution> <id>hl7-xjc</id> 
-				<phase>generate-sources</phase> <goals> <goal>xjc</goal> </goals> <configuration> 
-				<packageName>org.molgenis.hl7</packageName> <bindingDirectory>src/main/resources/xjb</bindingDirectory> 
-				<bindingFiles>bindings-hl7.xjb</bindingFiles> <schemaDirectory>src/main/resources/schemas</schemaDirectory> 
-				<arguments>-episode "${project.build.directory}/generated-sources/hl7.episode" 
-				-Djavax.xml.accessExternalSchema=all</arguments> </configuration> </execution> 
-				</executions> </plugin> -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	<dependencies>
 		<dependency>
-			<groupId>com.sun.xml.bind</groupId>
-			<artifactId>jaxb-impl</artifactId>
-			<version>2.1.13</version>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>2.2.11</version>
 		</dependency>
 	</dependencies>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 </project>
